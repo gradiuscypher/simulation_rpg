@@ -3,11 +3,11 @@ name: build
 'on':
   push:
     branches:
-      - base
+      - main
 
   pull_request:
     branches:
-      - base
+      - main
 
 env:
   CARGO_TERM_COLOR: always
