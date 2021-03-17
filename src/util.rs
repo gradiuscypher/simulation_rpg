@@ -1,4 +1,5 @@
 use reqwest;
+use regex::Regex;
 
 use chrono::DateTime;
 use chrono::prelude::*;
@@ -8,6 +9,7 @@ use substring::Substring;
 
 pub struct APoDInfo {
     pub title: String,
+    pub img: String,
     pub desc: String
 }
 
@@ -31,6 +33,19 @@ pub async fn get_apod_info() -> APoDInfo {
         .trim()
         .to_string();
 
+    let selector_a = Selector::parse("body > center:nth-child(1) > p:nth-child(3) > a").unwrap();
+    let a = fragment.select(&selector_a)
+        .next()
+        .unwrap()
+        .inner_html()
+        .trim()
+        .to_string();
+    
+    let re = Regex::new(r#"<img.+?src=["'](.+?)["'].*?>"#).unwrap();
+    let cap = re.captures(&a).unwrap();
+    let src: &str = &cap[1].to_string();
+    let img = uri.to_owned() + src;
+
     let selector_desc = Selector::parse("center + center + p").unwrap();
     let desc = fragment.select(&selector_desc)
         .next()
@@ -48,6 +63,7 @@ pub async fn get_apod_info() -> APoDInfo {
 
     return APoDInfo {
         title,
+        img,
         desc
     }
 }

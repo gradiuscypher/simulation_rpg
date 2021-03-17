@@ -3,7 +3,6 @@ use crate::util::{get_apod_info, get_date};
 use serenity::prelude::*;
 use serenity::{framework::standard::{macros::command, CommandResult}, model::channel::Message};
 
-
 #[command]
 #[description = "NASA's Astronomy Picture of the Day."]
 #[num_args(0)]
@@ -14,6 +13,7 @@ pub async fn apod(ctx: &Context, msg: &Message) -> CommandResult {
     msg.channel_id.send_message(ctx, |m| {
         m.embed(|e| {
             e.title(apod_info.title)
+            .image(apod_info.img)
             .description(apod_info.desc)
             .color((0, 120, 220))
             .footer(|f| {
