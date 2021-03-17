@@ -1,0 +1,52 @@
+[package]
+    name = "simulation_rpg"
+    version = "0.1.0"
+    authors = ["gradius", "kata-gatame <nathan@kata.codes>"]
+    edition = "2018"
+
+[dependencies]
+    async-trait = "0.1.9"
+    chrono = "0.4"
+    chrono-humanize = "0.1.2"
+    dotenv = "0.15.0"
+    futures = "0.3"
+    rand = "0.8"
+    scraper = "0.12.0"
+    select = "0.6.0-alpha.1"
+    substring = "1.4.0"
+    tracing = "0.1"
+    tracing-futures = "0.2"
+
+[dependencies.reqwest]
+    version = "0.11"
+    default-features = false
+    features = [
+        "blocking",
+        "json",
+        "stream"
+    ]
+
+[dependencies.serenity]
+    version = "0.10.0"
+    default-features = false
+    features = [
+        "builder",
+        "cache",
+        "collector",
+        "client",
+        "framework",
+        "gateway",
+        "http",
+        "model",
+        "standard_framework",
+        "utils",
+        "rustls_backend",
+    ]
+
+[dependencies.tokio]
+    features = [ "full" ]
+    version = "1.0"
+
+[dependencies.tracing-subscriber]
+    features = [ "env-filter" ]
+    version = "0.2"
