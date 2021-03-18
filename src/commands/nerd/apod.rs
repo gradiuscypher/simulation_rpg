@@ -4,7 +4,7 @@ use serenity::prelude::*;
 use serenity::{framework::standard::{macros::command, CommandResult}, model::channel::Message};
 
 #[command]
-#[description = "NASA's Astronomy Picture of the Day."]
+#[description = "Fetch NASA's Astronomy Picture of the Day."]
 #[num_args(0)]
 pub async fn apod(ctx: &Context, msg: &Message) -> CommandResult {
 

@@ -39,7 +39,8 @@ pub async fn get_apod_info() -> APoDInfo {
         .unwrap()
         .inner_html()
         .trim()
-        .to_string();
+        .to_string()
+        .replace("\n", "");
     
     let re = Regex::new(r#"<img.+?src=["'](.+?)["'].*?>"#).unwrap();
     let cap = re.captures(&a).unwrap();
