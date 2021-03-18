@@ -1,7 +1,5 @@
-use chrono::Utc;
-use chrono::Duration;
+use chrono::{Duration, Utc};
 use chrono_humanize::{Accuracy, HumanTime, Tense};
-
 use futures::future::join_all;
 use serenity::prelude::*;
 use serenity::{
