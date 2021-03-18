@@ -18,10 +18,10 @@ pub mod misc {
 }
 
 pub mod nerd {
-    use crate::commands::nerd::apod::*;
+    use crate::commands::nerd::{apod::*, xkcd::*};
     use serenity::framework::standard::macros::group;
 
     #[group]
-    #[commands(apod)]
+    #[commands(apod, xkcd)]
     pub struct Nerd;
 }

@@ -1,16 +1,39 @@
-use reqwest;
-use regex::Regex;
-
 use chrono::DateTime;
 use chrono::prelude::*;
+use regex::Regex;
+use reqwest;
 use scraper::{Html, Selector};
+use serde::Deserialize;
 use substring::Substring;
-
 
 pub struct APoDInfo {
     pub title: String,
     pub img: String,
     pub desc: String
+}
+
+pub struct XkcdInfo {
+    pub title: String,
+    pub img: String,
+    pub transcript: String,
+    pub alt: String,
+    pub num: u64,
+    pub date: String
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Comic {
+    month: String,
+    num: u64,
+    link: String,
+    year: String,
+    news: String,
+    safe_title: String,
+    transcript: String,
+    alt: String,
+    img: String,
+    title: String,
+    day: String
 }
 
 pub fn get_date() -> String {
@@ -66,5 +89,22 @@ pub async fn get_apod_info() -> APoDInfo {
         title,
         img,
         desc
+    }
+}
+
+pub async fn get_xkcd_info() -> XkcdInfo {
+    let uri = "http://xkcd.com/info.0.json ";
+    let resp = reqwest::get(uri).await.unwrap();
+
+    let body = resp.json::<Comic>().await.unwrap();
+    let dt = chrono::Local.ymd(body.year.parse::<i32>().unwrap(), body.month.parse::<u32>().unwrap(), body.day.parse::<u32>().unwrap());
+
+    return XkcdInfo {
+        title: body.title,
+        img: body.img,
+        transcript: body.transcript,
+        alt: body.alt,
+        num: body.num,
+        date: dt.format("%A, %e %B %Y").to_string()
     }
 }
