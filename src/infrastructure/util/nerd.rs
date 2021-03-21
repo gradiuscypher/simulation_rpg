@@ -1,4 +1,3 @@
-use chrono::DateTime;
 use chrono::prelude::*;
 use regex::Regex;
 use reqwest;
@@ -34,11 +33,6 @@ pub struct Comic {
     img: String,
     title: String,
     day: String
-}
-
-pub fn get_date() -> String {
-    let local: DateTime<Local> = Local::now();
-    return local.format("%A, %e %B %Y").to_string();
 }
 
 pub async fn get_apod_info() -> APoDInfo {

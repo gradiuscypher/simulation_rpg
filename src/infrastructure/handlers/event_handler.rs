@@ -1,10 +1,10 @@
+use serenity::prelude::*;
 use serenity::{
     async_trait,
     model::{
         event::ResumedEvent,
         gateway::Ready
-    },
-    prelude::*
+    }
 };
 
 pub struct Handler;

@@ -1,8 +1,9 @@
 use crate::ShardManagerContainer;
 use serenity::prelude::*;
 use serenity::{
-    framework::standard::{macros::command, CommandResult},
-    model::channel::Message,
+    framework::standard::{
+        macros::command, CommandResult
+    }, model::channel::Message
 };
 
 #[command]

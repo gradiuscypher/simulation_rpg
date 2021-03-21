@@ -3,8 +3,9 @@ use chrono_humanize::{Accuracy, HumanTime, Tense};
 use futures::future::join_all;
 use serenity::prelude::*;
 use serenity::{
-    framework::standard::{macros::command, CommandResult},
-    model::channel::Message,
+    framework::standard::{
+        macros::command, CommandResult
+    }, model::channel::Message
 };
 
 #[command]

@@ -1,6 +1,8 @@
 mod commands;
-mod handler;
-mod util;
+mod infrastructure;
+
+use crate::infrastructure::handlers::event_handler::Handler;
+use crate::infrastructure::models::bot::command_group::*;
 
 use dotenv;
 use std::env;
@@ -43,13 +45,13 @@ async fn main() {
         .configure(|c| c
             .owners(owners)
             .prefix("."))
-            .group(&commands::groups::owner::OWNER_GROUP)
-            .group(&commands::groups::misc::MISC_GROUP)
-            .group(&commands::groups::nerd::NERD_GROUP);
+            .group(&OWNER_GROUP)
+            .group(&MISC_GROUP)
+			.group(&NERD_GROUP);
     
     let mut client = Client::builder(&token)
         .cache_update_timeout(std::time::Duration::from_millis(500))
-        .event_handler(handler::Handler)
+        .event_handler(Handler)
         .framework(framework)
         .await
         .expect("Err creating client");

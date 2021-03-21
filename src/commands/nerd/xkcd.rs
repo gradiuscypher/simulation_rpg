@@ -1,7 +1,11 @@
-use crate::util::get_xkcd_info;
+use crate::infrastructure::util::nerd::*;
 
 use serenity::prelude::*;
-use serenity::{framework::standard::{macros::command, CommandResult}, model::channel::Message};
+use serenity::{
+    framework::standard::{
+        macros::command, CommandResult
+    }, model::channel::Message
+};
 
 #[command]
 #[description = "Fetch the most recent xkcd comic."]

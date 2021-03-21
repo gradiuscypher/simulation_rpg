@@ -1,7 +1,12 @@
-use crate::util::{get_apod_info, get_date};
+use crate::infrastructure::util::nerd::*;
+use crate::infrastructure::util::general::*;
 
 use serenity::prelude::*;
-use serenity::{framework::standard::{macros::command, CommandResult}, model::channel::Message};
+use serenity::{
+    framework::standard::{
+        macros::command, CommandResult
+    }, model::channel::Message
+};
 
 #[command]
 #[description = "Fetch NASA's Astronomy Picture of the Day."]
