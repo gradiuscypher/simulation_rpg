@@ -1,4 +1,4 @@
-use crate::commands::{owner::*, misc::*, nerd::*};
+use crate::commands::{owner::*, misc::*, nerd::*, twitter::*};
 use serenity::framework::standard::macros::group;
 
 #[group]
@@ -12,3 +12,7 @@ pub struct Misc;
 #[group]
 #[commands(apod, xkcd)]
 pub struct Nerd;
+
+#[group]
+#[commands(add)]
+pub struct Twitter;

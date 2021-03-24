@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate diesel;
+
 mod commands;
 mod infrastructure;
 
@@ -8,8 +11,6 @@ use dotenv;
 use std::env;
 use std::collections::HashSet;
 use std::sync::Arc;
-use tokio::sync::Mutex;
-
 use serenity::{
     client::bridge::gateway::ShardManager,
     framework::standard::{
@@ -47,7 +48,8 @@ async fn main() {
             .prefix("."))
             .group(&OWNER_GROUP)
             .group(&MISC_GROUP)
-			.group(&NERD_GROUP);
+            .group(&NERD_GROUP)
+            .group(&TWITTER_GROUP);
     
     let mut client = Client::builder(&token)
         .cache_update_timeout(std::time::Duration::from_millis(500))
